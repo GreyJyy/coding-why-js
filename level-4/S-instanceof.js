@@ -4,7 +4,7 @@ function customInstanceof(left,right) {
   //获取left的原型对象
   let proto = Object.getPrototypeOf(left)
   while(true) {
-  //找到顶层仍旧没有，返回false
+  //找到顶层仍旧没有,  返回false
   if(proto === null) return false
   //如果right的prototype出现在了left的原型链上，返回true
   if(proto === right.prototype) return true
