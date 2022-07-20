@@ -1,13 +1,14 @@
-// instanceof 运算符用于判断构造函数的 prototype 属性是否出现在对象的原型链中的任何位置。
-function myinstanceof(right, left) {
-  // 1 获取类型的原型
+function customInstanceof(left,right) {
+  //如果left值类型或null，返回false
+  if(typeof left !== 'object' || left === null) return false
+  //获取left的原型对象
   let proto = Object.getPrototypeOf(left)
-  // 2 获得对象的原型
-  const prototype = right.prototype
-  // 3 循环判断对象的原型是否等于类型的原型，直到对象原型为 null，因为原型链最终为 null
-  while (true) {
-    if (!proto) return false
-    if (proto === prototype) return true
-    proto = Object.getPrototypeOf(proto)
+  while(true) {
+  //找到顶层仍旧没有，返回false
+  if(proto === null) return false
+  //如果right的prototype出现在了left的原型链上，返回true
+  if(proto === right.prototype) return true
+  //否则继续沿着left的原型链查找下去
+  proto = Object.getPrototypeOf(proto)
+   }
   }
-}
