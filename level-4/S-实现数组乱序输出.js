@@ -32,6 +32,6 @@ function derange(arr) {
   //   }
   return arr
 }
-//我简直就是个天才
+
 const arr = [1, 2, 3]
 console.log(derange(arr))
