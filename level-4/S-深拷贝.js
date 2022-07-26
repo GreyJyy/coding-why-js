@@ -34,14 +34,16 @@ function deepClone(obj, hash = new WeakMap()) {
   const target = new obj.constructor()
   //  缓存遍历过的对象
   hash.set(obj, target)
-  //  遍历对象或数组(Object.keys排除了对象继承属性的干扰)
+  //  遍历对象或数组(Reflect.ownKeys可以返回常规键名和Symbol键名)
   //  循环递归
-  Object.keys(obj).forEach(key => (target[key] = deepClone(obj[key])))
+  Reflect.ownKeys(obj).forEach(key => (target[key] = deepClone(obj[key])))
   return target
 }
 
 // for test
+const money = Symbol('money')
 const obj1 = {
+  [money]: 20,
   name: 'jy',
   age: 20,
   friends: ['KOBE', 'JAMES'],
