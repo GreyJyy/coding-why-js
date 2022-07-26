@@ -1,7 +1,7 @@
 // -----------------------------------------------------手写实现一个浅拷贝
 function shallowClone(source) {
   const target = {}
-  Object.keys(source).forEach((key) => {
+  Object.keys(source).forEach(key => {
     target[key] = source[key]
   })
   return target
